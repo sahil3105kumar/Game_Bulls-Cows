@@ -24,4 +24,22 @@ def calculate_feedback(secret_code, player_guess):
     Returns a tuple: (bulls, cows)
     """
 
+    bulls = 0
+    cows = 0
+
+    unmatched_secret = []
+    unmatched_guess = []
     
+    for i in range(4):
+        if secret_code[i] == player_guess[i]:
+            bulls+=1
+        else:
+            unmatched_secret.append(secret_code[i])
+            unmatched_guess.append(player_guess[i])
+    
+    for digit in unmatched_guess:
+        if digit in unmatched_secret:
+            cows += 1
+            unmatched_secret.remove(digit)
+    
+    return bulls, cows
